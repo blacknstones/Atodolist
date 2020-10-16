@@ -1,59 +1,27 @@
-import SDAproject.Menu;
+package SDAproject;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import org.junit.jupiter.api.*;
 
-public class ToDoList {
-    private ArrayList<Task> todolist;
-    private Menu menu;
-    private int toDoCount;
-    private int doneCount;
 
-    public ToDoList()
-    {
-        List<SDAproject.ToDoList> todolist = new ArrayList<>();
-        menu = new Menu();
+/**
+ * Test class for ToDoList.
+ *
+ * @author Yanwei Zhu
+ * @Version 2020-10-16
+ */
 
+public class ToDoListTest {
+
+    @Test
+    void sortByProjectTest {
+        ToDoList todo = new ToDoList();
+        Task t1 = new Task("laundry", "life", "2020-11-11");
+        todo.addNewTask(t1);
     }
-
-    public void start()
-    {
-        menu.mainMenu(toDoCount, doneCount);
-        //Scanner newScanner = new Scanner(System.in);
-        //String option = newScanner.nextLine();
-        //System.out.println("You entered option " + option);
     }
 
 
-    public void addNewTask()
-    {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter title: ");
-        String title = scan.nextLine();
-        System.out.println("Enter project: ");
-        String project = scan.nextLine();
-        System.out.println("Enter due date (format: yyyy-mm-dd): ");
-        String dateString = scan.nextLine();
-        Task newTask = new Task(title, dateString, project);
-        this.todolist.add(newTask);
-    }
 
 
-    public void removeTask()
-    {
 
-    }
-
-    public void printAll()
-    {
-        todolist.forEach(task -> task.printDescription());
-    }
-
-
-    public void sortByDate()
-    {
-        List<String> dateArray = new ArrayList<>();
-        
-    }
 }
