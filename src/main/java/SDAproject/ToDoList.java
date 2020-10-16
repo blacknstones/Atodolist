@@ -41,7 +41,11 @@ public class ToDoList {
 
     public void removeTask()
     {
-
+        System.out.println("Your todo-list:");
+        for(int i = 0; i < todolist.size(); i++) {
+            System.out.println("Task" + (i+1) + ": ");
+        }
+        System.out.println("Please choose ");
     }
 
     public void printAll()
@@ -49,10 +53,14 @@ public class ToDoList {
         todolist.forEach(task -> task.printDescription());
     }
 
-
     public void sortByDate()
     {
         List<String> dateArray = new ArrayList<>();
         
+    }
+
+    public void sortByProject()
+    {
+
     }
 }

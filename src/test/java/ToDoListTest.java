@@ -1,3 +1,5 @@
+import SDAproject.Menu;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -10,7 +12,7 @@ public class ToDoList {
 
     public ToDoList()
     {
-        List<ToDoList> todolist = new ArrayList<>();
+        List<SDAproject.ToDoList> todolist = new ArrayList<>();
         menu = new Menu();
 
     }
