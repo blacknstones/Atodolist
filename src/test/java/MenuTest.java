@@ -1,4 +1,4 @@
-public class Menu {
+public class MenuTest {
 
     public void mainMenu(int todoCount, int doneCount)
     {
