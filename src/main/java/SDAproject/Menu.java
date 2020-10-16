@@ -1,3 +1,7 @@
+package SDAproject;
+
+import java.util.Scanner;
+
 public class Menu {
 
     public void mainMenu(int todoCount, int doneCount)
@@ -17,18 +21,19 @@ public class Menu {
         System.out.println("(4) Save and Quit");
     }
 
-    public void addTaskMenu()
-    {
+    public void addTaskMenu() {
 
     }
 
-    public void showListMenu()
-    {
+    public void showListMenu() {
 
     }
 
-    public void EditTaskMenu()
-    {
+    public void editTaskMenu() {
+
+    }
+
+    public void removeTaskMenu() {
 
     }
 

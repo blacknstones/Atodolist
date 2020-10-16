@@ -2,16 +2,15 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Date;
 import java.util.Scanner;
 
-public class Task {
+public class TaskTest {
     private String title;
     private LocalDate dueDate;
     private boolean isComplete;
     private String project;
 
-    public Task(String title, String dateString, String project)
+    public TaskTest(String title, String dateString, String project)
     {
         this.setTitle(title);
         this.setDueDate(dateString);
@@ -114,7 +113,7 @@ public class Task {
         System.out.println("Status: " + getStatusString());
     }
 
-    public Task createNewTask()
+    public TaskTest createNewTask()
     {
         Scanner scan = new Scanner(System.in);
         System.out.println("Enter title: ");
@@ -123,7 +122,7 @@ public class Task {
         String project = scan.nextLine();
         System.out.println("Enter due date (format: yyyy-mm-dd): ");
         String date = scan.nextLine();
-        Task newTask = new Task(title, date,project);
+        TaskTest newTask = new TaskTest(title,date,project);
         return newTask;
     }
 
