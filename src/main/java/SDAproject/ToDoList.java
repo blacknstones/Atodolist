@@ -95,10 +95,16 @@ public class ToDoList {
         }
     }
 
+    /**
+     * Sort the todolist by project name of tasks.
+     */
     public void sortByProject() {
         Collections.sort(todolist, Task.ProjectComparator);
     }
 
+    /**
+     * Sort the todolist by due date of tasks.
+     */
     public void sortByDate() {
         Collections.sort(todolist, Task.DateComparator);
     }
