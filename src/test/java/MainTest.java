@@ -1,6 +1,6 @@
 import SDAproject.ToDoList;
 
-public class Main {
+public class MainTest {
     public static void main(String args[])
     {
         ToDoList todo = new ToDoList();
