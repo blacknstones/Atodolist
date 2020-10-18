@@ -2,8 +2,6 @@ import org.junit.jupiter.api.*;
 
 import java.time.LocalDate;
 
-import static org.junit.jupiter.api.Assertions.*;
-
 public class TestClass {
 /*
     @Test
@@ -35,7 +33,7 @@ public class TestClass {
 
     @Test
     void testTaskDate() {
-        Task task = new Task("laundry", "2020-10-01", "life");
+        TaskTest task = new TaskTest("laundry", "2020-10-01", "life");
         LocalDate result = task.getDueDate();
         System.out.println(result);
         //assertEquals("2020-10-01", result);
