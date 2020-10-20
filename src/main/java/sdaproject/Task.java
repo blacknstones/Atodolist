@@ -1,8 +1,6 @@
-package SDAproject;
+package sdaproject;
 
-import com.sun.org.apache.xml.internal.dtm.DTMAxisTraverser;
-import jdk.vm.ci.meta.Local;
-
+import java.io.Serializable;
 import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -20,7 +18,7 @@ import java.util.Comparator;
  * @author Yanwei Zhu
  * @version 2020.10.16
  */
-public class Task implements Comparable<Task>{
+public class Task implements Serializable {
     private String title;
     private String project;
     private LocalDate dueDate;
@@ -109,7 +107,6 @@ public class Task implements Comparable<Task>{
         if(dueDate.compareTo(LocalDate.now()) < 0){
             throw new DateTimeException("The time you entered has passed!");
         }
-
     }
 
     /**
@@ -124,8 +121,9 @@ public class Task implements Comparable<Task>{
      * Change the completion status as true.
      */
     public void markAsDone() {
-        if (!isComplete)
+        if (!isComplete) {
             isComplete = true;
+        }
         // *** reconsider this printing method. is it necessary?
         else System.out.println("The task is already done!");
     }
@@ -164,6 +162,12 @@ public class Task implements Comparable<Task>{
                 + getDueDate() + " " + getStatusString());
     }
 
+    public void printDetail() {
+        System.out.println("Title    " + "Project   " + "Due Date   " + "status");
+        System.out.println(getTitle() + " | " + getProject() + " | " + getDueDate() + " | " + getStatusString());
+    }
+
+
     /**
      * Print the long description of a Task.
      */
@@ -174,24 +178,12 @@ public class Task implements Comparable<Task>{
         System.out.println("Status: " + getStatusString());
     }
 
-
-    public static Comparator<Task> ProjectComparator = new Comparator<Task>() {
-        public int compare(Task t1, Task t2) {
-            String projectName1 = t1.getProject().toUpperCase();
-            String projectName2 = t2.getProject().toUpperCase();
-
-            return projectName1.compareTo(projectName2);
-        }
-    };
-
-    public static Comparator<Task> DateComparator = new Comparator<Task>() {
-        public int compare(Task t1, Task t2) {
-            LocalDate date1 = t1.getDueDate();
-            LocalDate date2 = t2.getDueDate();
-
-            return date1.compareTo(date2);
-        }
-    };
+    @Override
+    public String toString() {
+        return "Task [title=" + title + ", project="
+                + project + ", dueDate=" + dueDate + ", isComplete ="
+                + isComplete + "]";
+    }
 
 }
 
