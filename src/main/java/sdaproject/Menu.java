@@ -14,18 +14,12 @@ import java.util.Scanner;
  */
 
 public class Menu {
-    private Scanner input;
-
-    public Menu() {
-        input = new Scanner(System.in);
-    }
     /**
      * Display the welcome menu.
      * @param todoCount The number of to-do tasks.
      * @param doneCount The number of done tasks.
      */
-    public void welcomeMenu(int todoCount, int doneCount)
-    {
+    public static void welcomeMenu(int todoCount, int doneCount) {
         System.out.println("Welcome to Atodolist!");
         System.out.println("You have " + todoCount + " tasks todo and " + doneCount + " tasks are done!" + "\n");
     }
@@ -33,14 +27,13 @@ public class Menu {
     /**
      * Display the main option menu.
      */
-    public static void mainOptionMenu()
-    {
-        System.out.println("Please choose one of the following options:");
+    public static void mainOptionMenu() {
+        System.out.println("Please choose one of the following options [Enter 1-5]:");
         System.out.println("(1) Show Task List (by date or project)");
         System.out.println("(2) Add New Task");
         System.out.println("(3) Edit Task (update, mark as done, remove)");
         System.out.println("(4) Save and Quit");
-        System.out.println("(5) Help\n");
+        System.out.println("(5) Help\n>> ");
     }
 
     /**
@@ -49,14 +42,14 @@ public class Menu {
     public static void showListOption() {
         System.out.println("Show Task List by:");
         System.out.println("(1) Date");
-        System.out.println("(2) project");
+        System.out.println("(2) project\n>> ");
     }
 
     /**
      * Display the add Task menu.
      */
     public static void addTaskMenu() {
-        System.out.println("Please enter details of the task you want to add to the list:");
+        System.out.println("Enter details of the task you want to add to the list");
     }
 
     /**
@@ -71,8 +64,21 @@ public class Menu {
         System.out.println("(4) Return to main menu");
     }
 
-    public void quitMenu()
+    /**
+     * This method pauses the program and waits for the user to press enter
+     */
+    public static void enterToReturn() {
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Press Enter to return to main menu");
+        sc.nextLine();
+    }
+
+    public static void quitMenu()
     {
         System.out.println("All changes are saved. Good bye!");
     }
+
+
+
+
 }
