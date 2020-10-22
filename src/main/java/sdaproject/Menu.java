@@ -24,32 +24,23 @@ public class Menu {
      * @param todoCount The number of to-do tasks.
      * @param doneCount The number of done tasks.
      */
-    public static void welcomeMenu(int todoCount, int doneCount)
+    public void welcomeMenu(int todoCount, int doneCount)
     {
         System.out.println("Welcome to Atodolist!");
-        System.out.println("You have " + todoCount + " tasks todo and " + doneCount + " tasks are done!");
+        System.out.println("You have " + todoCount + " tasks todo and " + doneCount + " tasks are done!" + "\n");
     }
 
     /**
      * Display the main option menu.
      */
-    public int mainOptionMenu()
+    public static void mainOptionMenu()
     {
         System.out.println("Please choose one of the following options:");
         System.out.println("(1) Show Task List (by date or project)");
         System.out.println("(2) Add New Task");
         System.out.println("(3) Edit Task (update, mark as done, remove)");
         System.out.println("(4) Save and Quit");
-        System.out.println("(5) Help");
-        return input.nextInt();
-    }
-
-    /**
-     * Display the help menu.
-     */
-    public static void helpMenu() {
-        System.out.println("Enter the number of options and press Enter.");
-        mainOptionMenu();
+        System.out.println("(5) Help\n");
     }
 
     /**
@@ -68,11 +59,11 @@ public class Menu {
         System.out.println("Please enter details of the task you want to add to the list:");
     }
 
-
     /**
      * Display the edit task menu.
      */
-    public static void editTaskMenu() {
+
+    public static void editTaskOption() {
         System.out.println("Please choose one of the following options:");
         System.out.println("(1) Update task");
         System.out.println("(2) Mark task as done");
@@ -80,30 +71,8 @@ public class Menu {
         System.out.println("(4) Return to main menu");
     }
 
-
-
-    public void markAsDoneSuccessMessage(Task task) {
-        System.out.println("Your task:");
-        task.printDetail();
-        System.out.println("is now done! Good job!");
-    }
-    public void removeSuccessMessage(Task task) {
-        System.out.println("Your task:");
-        task.printDetail();
-        System.out.println("is removed from the list.");
-    }
-
-    public void removeTaskMenu() {
-        System.out.println("Your Task ");
-
-
-
-
-
-    }
-
-    public void QuitMenu()
+    public void quitMenu()
     {
-
+        System.out.println("All changes are saved. Good bye!");
     }
 }
