@@ -100,7 +100,7 @@ public class Task implements Serializable {
         }
         catch (DateTimeParseException e)
         {
-            System.out.println("The format of the date is invalid, please try again");
+            System.out.println("The format of the date is invalid, please try again.");
         }
 
         // check if date has passed the current time
@@ -157,8 +157,8 @@ public class Task implements Serializable {
      * Get the short description of a Task as a String.
      */
     public String getDescription() {
-        return (getTitle() + " " + getProject() + " "
-                + getDueDate() + " " + getStatusString());
+        return (getTitle() + "  " + getProject() + "  "
+                + getDueDate() + "  " + getStatusString());
     }
 
     public void printDetail() {
