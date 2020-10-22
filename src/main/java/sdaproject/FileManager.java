@@ -4,47 +4,38 @@ import java.io.*;
 import java.util.ArrayList;
 
 public class FileManager {
-    public static String filename = "todofile.obj";
+    private static String filename = "todolist.txt";
 
-
-    public void createFile() {
+    public void writeToFile(ArrayList<Task> list) {
         try {
-            File newFile = new File(filename);
-            if (newFile.createNewFile()) {
-                System.out.println("File created: " + newFile.getName());
-            } else {
-                System.out.println("File already exists.");
-            }
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
+            FileOutputStream file = new FileOutputStream(filename);
+            ObjectOutputStream output = new ObjectOutputStream(file);
+            output.writeObject(list);
+            output.close();
+            file.close();
+        }
+        catch(IOException e) {
+            System.out.println("File not found " +  e);
         }
     }
 
-    public void writeToFile(ArrayList<Task> todolist) {
+    public ArrayList<Task> readFromFile() {
+        ArrayList<Task> list = new ArrayList<>();
         try {
-            FileWriter fileWriter = new FileWriter(filename);
-            BufferedWriter br = new BufferedWriter(fileWriter);
-
-            for (Task task : todolist) {
-                br.write(task.toString());
-            }
-            fileWriter.close();
-
-        } catch (IOException e) {
-            System.out.println("File not found" + e);
+            FileInputStream file = new FileInputStream(filename);
+            ObjectInputStream stream = new ObjectInputStream(file);
+            list = (ArrayList<Task>) stream.readObject();
+            stream.close();
+            file.close();
         }
-    }
-
-    public void readFromFile(ArrayList<Task> todolist) {
-        try {
-            FileReader fileReader = new FileReader(filename);
-            BufferedReader br = new BufferedReader(fileReader);
-            br.readLine();
-            fileReader.close();
+        catch(IOException  e)
+        {
+            System.out.println("File not found " +  e);
         }
-        catch (IOException e) {
-            System.out.println("File not found" + e);
+        catch (ClassNotFoundException e)
+        {
+            System.out.println("problems inside the file " + e);
         }
+        return list;
     }
 }
