@@ -28,43 +28,59 @@ public class ToDoList {
 
     /**
      * Return the taskList.
-     * @return current taskList.
+     * @return Current taskList.
      */
     public ArrayList<Task> getTaskList() {
         return taskList;
     }
 
+    /**
+     * Create a task from user input.
+     * @return The task created by user.
+     */
     public Task createTaskFromInput() {
         Scanner input = new Scanner(System.in);
         //try {
-            System.out.print("Enter title: ");
+            System.out.print("Enter title >> ");
             String title = input.nextLine();
 
-            System.out.print("Enter project: ");
+            System.out.print("Enter project >> ");
             String project = input.nextLine();
 
-            System.out.print("Enter due date (format: yyyy-mm-dd): ");
+            System.out.print("Enter due date (format: yyyy-mm-dd) >> ");
             String dateString = input.nextLine();
 
             Task newTask = new Task(title, project, dateString);
-        input.close();
+        //input.close();
         return newTask;
     }
 
+    /**
+     * Select task from user input.
+     * @return The index of the task selected by user.
+     */
     public int selectTaskFromInput() {
+        System.out.println("Enter the task number >>");
         Scanner input = new Scanner(System.in);
         int taskIndex = input.nextInt();
         if (taskIndex < 0 || taskIndex > taskList.size()) {
             throw new ArrayIndexOutOfBoundsException("The task doesn't exist, please try again!");
         }
-        input.close();
+        //input.close();
         return taskIndex;
     }
 
+    /**
+     * Update task information.
+     * @param index The index of the task in tasklist to be updated.
+     */
     public void updateTask(int index) {
         taskList.set(index, createTaskFromInput());
     }
 
+    /**
+     * Add new task to the tasklist.
+     */
     public void addTask() {
         taskList.add(createTaskFromInput());
     }
@@ -95,15 +111,16 @@ public class ToDoList {
      * Print all tasks in the taskList with number in ascending order.
      */
     public void printAll() {
+        System.out.println("Title    " + "Project   " + "Due Date   " + "status");
         int i = 0;
         for (Task task : taskList) {
-            System.out.println("[" + (i + 1) + "]" + task.getDescription());
+            System.out.println("[" + (i + 1) + "]  " + task.getDescription());
             i++;
         }
     }
 
     /**
-     * Display all tasks by project name in ascending order.
+     * Take user input and display all tasks by project or date.
      */
     public void showList() {
         if (taskList.size() == 0) {
@@ -124,11 +141,15 @@ public class ToDoList {
                 default:
                     break;
             }
-            input.close();
+            // input.close();
         }
     }
 
 
+    /**
+     * Allow the user to choose edit task options: update, mark as done, remove.
+     * @param taskIndex The index of the task to be edited.
+     */
     public void editTask(int taskIndex) {
         Scanner input = new Scanner(System.in);
         int option = input.nextInt();
@@ -151,8 +172,11 @@ public class ToDoList {
                 removeTask(taskIndex);
                 System.out.println("Your task is now removed from the list.");
                 break;
+
+            default:
+                break;
         }
-        input.close();
+        //input.close();
     }
 
     /**
@@ -191,6 +215,10 @@ public class ToDoList {
         return count;
     }
 
+    /**
+     * Return the total count of tasks in tasklist.
+     * @return The total count of tasks.
+     */
     public int getTaskCount() {
         return taskList.size();
     }
