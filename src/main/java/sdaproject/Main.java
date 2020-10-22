@@ -38,11 +38,14 @@ public class Main {
                     case 1:
                         menu.showListOption();
                         todolist.showList();
+                        menu.enterToReturn();
                         break;
 
                     case 2:
                         menu.addTaskMenu();
                         todolist.addTask();
+                        menu.enterToReturn();
+
                         break;
 
                     case 3:
