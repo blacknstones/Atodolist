@@ -1,7 +1,5 @@
 package sdaproject;
-
-import com.sun.tools.javac.comp.Todo;
-
+import java.util.ArrayList;
 import java.util.Scanner;
 
 
@@ -14,64 +12,63 @@ import java.util.Scanner;
  */
 
 public class Main {
-    private ToDoList todolist;
-    private Menu menu;
-    private FileManager fileManager;
-
-    /**
-     *
-     */
-    public void setUp() {
-        todolist = new ToDoList();
-        menu = new Menu();
-        fileManager = new FileManager();
-    }
-
-    /**
-     * start
-     */
-    public void run() {
-        menu.welcomeMenu(todolist.getToDoCount(), todolist.getDoneCount());
-        menu.mainOptionMenu();
-
-        try {
-            Scanner input = new Scanner(System.in);
-            int menuOption = input.nextInt();
-
-            switch (menuOption) {
-                case 1:
-                    menu.showListOption();
-                    todolist.showList(input.nextInt());
-                    break;
-
-                case 2:
-                    menu.addTaskMenu();
-                    todolist.addTaskFromInput();
-                    break;
-
-                case 3:
-                    todolist.printAll();
-                    todolist.selectTaskFromInput();
-                    menu.editTaskMenu();
-                    int selected = todolist.selectTaskFromInput();
-                    todolist.editTaskFromInput(selected);
-                    //add success message here
-                case 4:
-                    fileManager.writeToFile(todolist.taskList);
-                    menu.
-                    break;
-            }
-
-        } catch(Exception e) {
-            System.out.println("error");
-        }
-        }
-
-    }
 
     public static void main(String args[])
     {
+        // SETUP
+        Menu menu = new Menu();
+        FileManager fileManager = new FileManager();
+        // read from file and create a new ToDoList object
+        ToDoList todolist = new ToDoList(fileManager.readFromFile());
+        Scanner scanner = new Scanner(System.in);
+        menu.welcomeMenu(todolist.getToDoCount(), todolist.getDoneCount());
 
+        //initiate the starting menu option
+        int menuOption = -1;
+
+        try {
+            // Run the program based on user input of options
+
+            while (menuOption != 4) {
+                menu.mainOptionMenu();
+                // Get user input of option number and pass
+                menuOption = scanner.nextInt();
+
+                switch (menuOption) {
+                    case 1:
+                        menu.showListOption();
+                        todolist.showList();
+                        break;
+
+                    case 2:
+                        menu.addTaskMenu();
+                        todolist.addTask();
+                        break;
+
+                    case 3:
+                        // display the current todolist
+                        todolist.printAll();
+                        // Select task from user input
+                        int taskIndex = todolist.selectTaskFromInput();
+                        // Edit task
+                        menu.editTaskOption();
+                        todolist.editTask(taskIndex);
+                        break;
+
+                    default:
+                        break;
+                }
+
+
+            }
+
+        } catch (Exception e) {
+            System.out.println("error" + e);
+        }
+
+        scanner.close();
+        fileManager.writeToFile(todolist.getTaskList());
+        menu.quitMenu();
 
     }
 }
