@@ -40,18 +40,28 @@ public class ToDoList {
      */
     public Task createTaskFromInput() {
         Scanner input = new Scanner(System.in);
-        //try {
-            System.out.print("Enter title >> ");
-            String title = input.nextLine();
+        Task newTask = new Task();
+        while (true) {
+            try {
+                System.out.print("Enter title >> ");
+                String title = input.nextLine();
+                newTask.setTitle(title);
 
-            System.out.print("Enter project >> ");
-            String project = input.nextLine();
+                System.out.print("Enter project >> ");
+                String project = input.nextLine();
+                newTask.setProject(project);
 
-            System.out.print("Enter due date (format: yyyy-mm-dd) >> ");
-            String dateString = input.nextLine();
+                System.out.print("Enter due date (format: yyyy-mm-dd) >> ");
+                String dateString = input.nextLine();
+                newTask.setDueDate(dateString);
 
-            Task newTask = new Task(title, project, dateString);
-        //input.close();
+            } catch (Exception e){
+                System.out.println(e);
+                continue;
+            }
+            break;
+        }
+
         return newTask;
     }
 
