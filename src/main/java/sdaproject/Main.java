@@ -56,6 +56,7 @@ public class Main {
                         // Edit task
                         menu.editTaskOption();
                         todolist.editTask(taskIndex);
+                        menu.enterToReturn();
                         break;
 
                     default:
@@ -67,6 +68,7 @@ public class Main {
 
         } catch (Exception e) {
             System.out.println("error" + e);
+
         }
 
         scanner.close();
