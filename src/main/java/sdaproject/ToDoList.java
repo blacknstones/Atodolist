@@ -16,8 +16,6 @@ import java.util.*;
 
 public class ToDoList {
     private ArrayList<Task> taskList;
-    private int toDoCount;
-    private int doneCount;
 
     /**
      * Create the initial ToDoList.
@@ -67,8 +65,6 @@ public class ToDoList {
             }
             break;
         }
-
-        //input.close();
         return newTask;
     }
 
@@ -84,7 +80,6 @@ public class ToDoList {
         if (taskIndex < 0 || taskIndex > taskList.size()) {
             throw new ArrayIndexOutOfBoundsException("The task doesn't exist, please try again.\n");
         }
-        //input.close();
         return taskIndex;
     }
 
@@ -99,12 +94,15 @@ public class ToDoList {
     /**
      * Add new task to the tasklist.
      */
-    public void addTask() {
-        taskList.add(createTaskFromInput());
-        System.out.println("The task has been added to the list.\n");
+    public void addTaskFromInput() {
+        Task task = createTaskFromInput();
+        taskList.add(task);
+        task.printDetail();
+        System.out.println(" has been added to the list.\n");
     }
 
     public void addTask(Task task) {
+        taskList.add(task);
     }
 
     /**
@@ -131,24 +129,31 @@ public class ToDoList {
 
     /**
      * Print all tasks in the taskList with number in ascending order.
+     * This method is only called when the list is not empty.
      */
     public void printAll() {
-        System.out.println("Number" +"Title    " + "Project   " + "Due Date   " + "status");
-
-        int i = 0;
+        String format = "%-10s %-20s %-15s %-12s %-8s %n";
+        System.out.printf(format, "Number", "Title", "Project", "Due Date", "Status");
+        System.out.println("-------------------------------------------------------------------");
         for (Task task : taskList) {
-            System.out.println("[" + (i + 1) + "]  " + task.getDescription());
-            i++;
+            System.out.printf(format,"["+ (taskList.indexOf(task)+1) +"]",
+                    task.getTitle(), task.getProject(),
+                    task.getDueDate(), task.getStatusString());
         }
+        System.out.println("");
     }
 
     /**
      * Take user input and display all tasks by project or date.
      */
     public void showList() {
-        if (taskList.size() == 0) {
+        if (taskList.isEmpty()) {
             System.out.println("Your list is empty.\n");
+            return;
         } else {
+            System.out.println("Show Task List by:");
+            System.out.println("(1) Date");
+            System.out.println("(2) project\n>> ");
             Scanner input = new Scanner(System.in);
             int sortBy = input.nextInt();
 
@@ -164,7 +169,6 @@ public class ToDoList {
                 default:
                     break;
             }
-            //input.close();
         }
     }
 
@@ -173,7 +177,7 @@ public class ToDoList {
      * Allow the user to choose edit task options: update, mark as done, remove.
      * @param taskIndex The index of the task to be edited.
      */
-    public void editTask(int taskIndex) {
+    public void editTaskFromInput(int taskIndex) {
         Scanner input = new Scanner(System.in);
         int option = input.nextInt();
         switch (option) {
@@ -181,7 +185,6 @@ public class ToDoList {
             // Update task
             case 1:
                 updateTask(taskIndex);
-                System.out.println("Your task:");
                 taskList.get(taskIndex).printDetail();
                 System.out.println("is now up to date.\n");
                 break;
@@ -189,7 +192,6 @@ public class ToDoList {
             // Mark as done
             case 2:
                 taskList.get(taskIndex).markAsDone();
-                System.out.println("Your task:\n");
                 taskList.get(taskIndex).printDetail();
                 System.out.println("is now done! Good job!\n");
                 break;
@@ -204,7 +206,6 @@ public class ToDoList {
             default:
                 break;
         }
-        //input.close();
     }
 
     /**
@@ -243,11 +244,4 @@ public class ToDoList {
         return count;
     }
 
-    /**
-     * Return the total count of tasks in tasklist.
-     * @return The total count of tasks.
-     */
-    public int getTaskCount() {
-        return taskList.size();
-    }
 }
