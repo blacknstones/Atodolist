@@ -21,7 +21,8 @@ public class Menu {
      */
     public static void welcomeMenu(int todoCount, int doneCount) {
         System.out.println("Welcome to Atodolist!");
-        System.out.println("You have " + todoCount + " tasks todo and " + doneCount + " tasks are done!" + "\n");
+        System.out.println("You have " + todoCount + " tasks todo and " + doneCount + " tasks are done!" );
+        System.out.println("--------------------------------------------");
     }
 
     /**
@@ -35,26 +36,18 @@ public class Menu {
         System.out.println("(4) Save and Quit\n>> ");
     }
 
-    /**
-     * Display the sub-options of Show List option.
-     */
-    public static void showListOption() {
-        System.out.println("Show Task List by:");
-        System.out.println("(1) Date");
-        System.out.println("(2) project\n>> ");
-    }
 
     /**
      * Display the add Task menu.
      */
     public static void addTaskMenu() {
-        System.out.println("Enter details of the task you want to add to the list");
+        System.out.println("Enter details of the task you want to add to the list:");
+        System.out.println("------------------------------------------------------");
     }
 
     /**
      * Display the edit task menu.
      */
-
     public static void editTaskOption() {
         System.out.println("Please choose one of the following options:");
         System.out.println("(1) Update task");
@@ -64,7 +57,7 @@ public class Menu {
     }
 
     /**
-     * This method pauses the program and waits for the user to press enter
+     * Pauses the program and waits for the user to press enter
      */
     public static void enterToReturn() {
         Scanner sc = new Scanner(System.in);
@@ -72,12 +65,14 @@ public class Menu {
         sc.nextLine();
     }
 
+    /**
+     * Display the quit menu.
+     */
     public static void quitMenu()
     {
-        System.out.println("All changes are saved. Good bye!");
+        System.out.println("All changes are saved. ");
+        System.out.println("Thank you for using Atodolist. Good bye!");
     }
-
-
 
 
 }
