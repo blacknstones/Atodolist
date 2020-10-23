@@ -32,8 +32,7 @@ public class Menu {
         System.out.println("(1) Show Task List (by date or project)");
         System.out.println("(2) Add New Task");
         System.out.println("(3) Edit Task (update, mark as done, remove)");
-        System.out.println("(4) Save and Quit");
-        System.out.println("(5) Help\n>> ");
+        System.out.println("(4) Save and Quit\n>> ");
     }
 
     /**
@@ -61,7 +60,7 @@ public class Menu {
         System.out.println("(1) Update task");
         System.out.println("(2) Mark task as done");
         System.out.println("(3) Remove task");
-        System.out.println("(4) Return to main menu");
+        System.out.println("(4) Return to main menu\n>> ");
     }
 
     /**
@@ -69,7 +68,7 @@ public class Menu {
      */
     public static void enterToReturn() {
         Scanner sc = new Scanner(System.in);
-        System.out.println("Press Enter to return to main menu");
+        System.out.println(">> Press Enter to return to main menu");
         sc.nextLine();
     }
 
