@@ -4,11 +4,14 @@ import java.util.Scanner;
 
 
 /**
- * This class is the main class which runs the application.
+ * This class is part of the "Atodolist" application.
+ * "Atodolist" is a text-based to-do-list tracker
+ * that runs on the command line.
+ *
+ * This class runs the program and allow user to perform all functionalities.
  *
  * @author Yanwei Zhu
- * @version 2020-10-20
- *
+ * @version 2020.10.23
  */
 
 public class Main {
@@ -36,14 +39,13 @@ public class Main {
 
                 switch (menuOption) {
                     case 1:
-                        menu.showListOption();
                         todolist.showList();
                         menu.enterToReturn();
                         break;
 
                     case 2:
                         menu.addTaskMenu();
-                        todolist.addTask();
+                        todolist.addTaskFromInput();
                         menu.enterToReturn();
 
                         break;
@@ -55,20 +57,18 @@ public class Main {
                         int taskIndex = todolist.selectTaskFromInput();
                         // Edit task
                         menu.editTaskOption();
-                        todolist.editTask(taskIndex);
+                        todolist.editTaskFromInput(taskIndex);
                         menu.enterToReturn();
                         break;
 
+                    // break when any other values are inputted by user
                     default:
                         break;
                 }
-
-
             }
 
         } catch (Exception e) {
             System.out.println("error" + e);
-
         }
 
         scanner.close();
