@@ -5,7 +5,7 @@ import java.time.DateTimeException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
-import java.util.Comparator;
+import java.util.Formatter;
 
 /**
  * This class is part of the "Atodolist" application.
@@ -14,10 +14,12 @@ import java.util.Comparator;
  *
  * This class is the main component of a ToDoList.
  * A Task contains title, project, due date, and completion status.
+ * It implements Serializable interface so it can be sorted.
  *
  * @author Yanwei Zhu
  * @version 2020.10.16
  */
+
 public class Task implements Serializable {
     private String title;
     private String project;
@@ -150,36 +152,23 @@ public class Task implements Serializable {
         else return "ToDo";
     }
 
-    /**
-     * Get the short description of a Task as a String.
-     */
-    public String getDescription() {
-        return (getTitle() + "  " + getProject() + "  "
-                + getDueDate() + "  " + getStatusString());
-    }
-
     public void printDetail() {
-        System.out.println("Title    " + "Project   " + "Due Date   " + "status");
-        System.out.println(getTitle() + " | " + getProject() + " | " + getDueDate() + " | " + getStatusString());
+        System.out.println("\nYour task:\n");
+
+        String format = "%-20s %-15s %-12s %-8s %n";
+        System.out.printf(format, "Title", "Project", "Due Date", "Status");
+        System.out.println("--------------------------------------------------------");
+        System.out.printf(format, getTitle(), getProject(),
+                                         getDueDate(), getStatusString());
     }
 
 
-    /**
-     * Print the long description of a Task.
-     */
-    public void printLongDescription() {
-        System.out.println("Title: " + getTitle());
-        System.out.println("Due Date: " + getDueDate());
-        System.out.println("Project: " + getProject());
-        System.out.println("Status: " + getStatusString());
-    }
-
-    @Override
+    /*@Override
     public String toString() {
         return "Task [title=" + title + ", project="
                 + project + ", dueDate=" + dueDate + ", isComplete ="
                 + isComplete + "]";
-    }
+    }*/
 
 }
 
