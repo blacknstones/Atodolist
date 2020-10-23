@@ -23,9 +23,15 @@ public class ToDoList {
      * Create the initial ToDoList.
      */
     public ToDoList(ArrayList<Task> list) {
-        taskList = list;
+        this.taskList = list;
     }
 
+    /**
+     * Initiate an empty ToDoList.
+     */
+    public ToDoList() {
+        this.taskList = new ArrayList<>();
+    }
     /**
      * Return the taskList.
      * @return Current taskList.
@@ -56,12 +62,13 @@ public class ToDoList {
                 newTask.setDueDate(dateString);
 
             } catch (Exception e){
-                System.out.println(e);
+                System.out.println(e.getMessage());
                 continue;
             }
             break;
         }
 
+        //input.close();
         return newTask;
     }
 
@@ -70,11 +77,12 @@ public class ToDoList {
      * @return The index of the task selected by user.
      */
     public int selectTaskFromInput() {
-        System.out.println("Enter the task number >>");
         Scanner input = new Scanner(System.in);
-        int taskIndex = input.nextInt();
+        System.out.println("Enter the task number >>");
+        int taskNumber = input.nextInt();
+        int taskIndex = taskNumber - 1;
         if (taskIndex < 0 || taskIndex > taskList.size()) {
-            throw new ArrayIndexOutOfBoundsException("The task doesn't exist, please try again!");
+            throw new ArrayIndexOutOfBoundsException("The task doesn't exist, please try again.\n");
         }
         //input.close();
         return taskIndex;
@@ -93,6 +101,10 @@ public class ToDoList {
      */
     public void addTask() {
         taskList.add(createTaskFromInput());
+        System.out.println("The task has been added to the list.\n");
+    }
+
+    public void addTask(Task task) {
     }
 
     /**
@@ -121,7 +133,8 @@ public class ToDoList {
      * Print all tasks in the taskList with number in ascending order.
      */
     public void printAll() {
-        System.out.println("Title    " + "Project   " + "Due Date   " + "status");
+        System.out.println("Number" +"Title    " + "Project   " + "Due Date   " + "status");
+
         int i = 0;
         for (Task task : taskList) {
             System.out.println("[" + (i + 1) + "]  " + task.getDescription());
@@ -134,24 +147,24 @@ public class ToDoList {
      */
     public void showList() {
         if (taskList.size() == 0) {
-            System.out.println("Your list is empty.");
+            System.out.println("Your list is empty.\n");
         } else {
             Scanner input = new Scanner(System.in);
             int sortBy = input.nextInt();
 
             switch (sortBy) {
                 case 1:
-                    sortByProject();
+                    sortByDate();
                     printAll();
                     break;
                 case 2:
-                    sortByDate();
+                    sortByProject();
                     printAll();
                     break;
                 default:
                     break;
             }
-            // input.close();
+            //input.close();
         }
     }
 
@@ -168,19 +181,24 @@ public class ToDoList {
             // Update task
             case 1:
                 updateTask(taskIndex);
-                System.out.println("Your task is now up to date.");
+                System.out.println("Your task:");
+                taskList.get(taskIndex).printDetail();
+                System.out.println("is now up to date.\n");
                 break;
 
             // Mark as done
             case 2:
                 taskList.get(taskIndex).markAsDone();
-                System.out.println("Your task is now done! Good job!");
+                System.out.println("Your task:\n");
+                taskList.get(taskIndex).printDetail();
+                System.out.println("is now done! Good job!\n");
                 break;
 
             // Remove task
             case 3:
+
                 removeTask(taskIndex);
-                System.out.println("Your task is now removed from the list.");
+                System.out.println("Your task is now removed from the list.\n");
                 break;
 
             default:
