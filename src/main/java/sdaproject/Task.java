@@ -40,6 +40,9 @@ public class Task implements Serializable {
         isComplete = false;
     }
 
+    public Task() {
+        isComplete = false;
+    }
     /**
      * Define the title of a Task.
      * @param title The title of the task.
@@ -100,12 +103,12 @@ public class Task implements Serializable {
         }
         catch (DateTimeParseException e)
         {
-            System.out.println("The format of the date is invalid, please try again.");
+            System.out.println("The format of the date is invalid, please try again.\n");
         }
 
         // check if date has passed the current time
         if(dueDate.compareTo(LocalDate.now()) < 0){
-            throw new DateTimeException("The time you entered has passed!");
+            throw new DateTimeException("The time you entered has passed, please try again.\n");
         }
     }
 
@@ -125,15 +128,9 @@ public class Task implements Serializable {
             isComplete = true;
         }
         // *** reconsider this printing method. is it necessary?
-        else System.out.println("The task is already done!");
+        else System.out.println("The task is already done!\n");
     }
 
-    /**
-     * Change the completion status as false.
-     */
-    public void markAsUndone() {
-            isComplete = false;
-    }
 
     /**
      * Return the completion status of a Task.
