@@ -1,9 +1,9 @@
 # Atodolist
 
-A simple To-do List application with command-line based interface written in Java.
+A simple To-do-List application with command-line based interface written in Java.
 
 ## Description
-The application is command-line based. User will be guided to select options from the menu by enter option number. 
+The application is command-line based. User will be guided to select options from the menu by enter the option number. 
 
 ### Functionalities:
 - Create new tasks with title, project, due date, and completion status. 
@@ -19,7 +19,7 @@ The program contains 5 classes:
 - Task
 - FileManager
 
-Their relationship is shown as below:
+Their relationships are shown as below:
 
 ![class diagram](user_manual/class%20diagram.png)
 
@@ -34,7 +34,7 @@ When user enters **[1]** in main menu, the program will enter _Show List_ menu.
 If there is no task in the tasklist, a following message will be displayed:
 ![list empty message](user_manual/list-empty.png)
 
-After user has added tasks to the list, user can choose to show list by date or project by entering **[1]** or **[2]**:
+After user has added tasks to the list, user can choose to show the task list by date or project by entering **[1]** or **[2]**:
 ![show by date](user_manual/show-by-date.png)
 
 ![show by project](user_manual/show-by-project.png)
@@ -57,7 +57,7 @@ If user doesn't enter required information, corresponding message will be prompt
 - Passed date: 
 ![time passed](user_manual/time-passed.png)
 
-After user has entered required information in the right format, the task will be saved to the tasklist. The status of new tasks will be "To-do" by default.
+After user has entered required information in the right format, the task will be saved to the task list. The status of new tasks will be "To-do" by default.
 ![add task success](user_manual/add-task-success.png)
 User now can press **[ENTER]** to return to main menu.
 
@@ -87,5 +87,5 @@ Enter **[4]** to return to main menu.
 ![return to main menu](user_manual/return-to-main.png)
 
 ### Save and Quit
-When user enters **[4]** in main menu, the program will save all changes in the tasklist and prompt user the good-bye message:
+When user enters **[4]** in main menu, the program will save all changes in the task list and prompt user the good-bye message:
 ![quit](user_manual/quit.png)
