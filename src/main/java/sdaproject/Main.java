@@ -56,7 +56,7 @@ public class Main {
                         // Select task from user input
                         int taskIndex = todolist.selectTaskFromInput();
                         // Edit task
-                        menu.editTaskOption();
+                        menu.editTaskMenu();
                         todolist.editTaskFromInput(taskIndex);
                         menu.enterToReturn();
                         break;

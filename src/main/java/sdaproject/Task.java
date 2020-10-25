@@ -93,7 +93,7 @@ public class Task implements Serializable {
     public void setDueDate(String dateString) {
         //check if date String is empty
         if(dateString.trim().isEmpty()) {
-            throw new IllegalStateException("You have to enter a date!");
+            throw new IllegalArgumentException("You have to enter a date!");
         }
 
         //check date string format
@@ -162,13 +162,10 @@ public class Task implements Serializable {
                                          getDueDate(), getStatusString());
     }
 
-
-    /*@Override
+    @Override
     public String toString() {
-        return "Task [title=" + title + ", project="
-                + project + ", dueDate=" + dueDate + ", isComplete ="
-                + isComplete + "]";
-    }*/
+        return ("title=" + title + " project=" + project + " dueDate=" + dueDate + " iscomplete=" + isComplete);
+    }
 
 }
 

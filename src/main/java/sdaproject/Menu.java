@@ -48,7 +48,7 @@ public class Menu {
     /**
      * Display the edit task menu.
      */
-    public static void editTaskOption() {
+    public static void editTaskMenu() {
         System.out.println("Please choose one of the following options:");
         System.out.println("(1) Update task");
         System.out.println("(2) Mark task as done");
