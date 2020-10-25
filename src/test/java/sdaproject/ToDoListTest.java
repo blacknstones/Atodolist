@@ -19,6 +19,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class ToDoListTest {
 
+    /**
+     * Test if addTask() method adds new tasks the list.
+     */
     @Test
     void addTaskTest() {
         ToDoList todo = new ToDoList();
@@ -38,6 +41,10 @@ public class ToDoListTest {
         int result = todo.getTaskList().size();
         assertEquals(result, 6);
     }
+
+    /**
+     * Test if sortByProject() method sorts the list correctly.
+     */
     @Test
     void sortByProjectTest() {
         ToDoList todo = new ToDoList();
@@ -61,6 +68,9 @@ public class ToDoListTest {
         assertArrayEquals(sortedIndex, expectedIndex);
     }
 
+    /**
+     * Test if sortByDate() method sorts the list correctly.
+     */
     @Test
     void sortByDateTest() {
         ToDoList todo = new ToDoList();
@@ -85,6 +95,9 @@ public class ToDoListTest {
         assertArrayEquals(sortedIndex, expectedIndex);
     }
 
+    /**
+     * Test if removeTask() method removes task correctly.
+     */
     @Test
     void removeTaskTest() {
         ToDoList todo = new ToDoList();
@@ -107,6 +120,9 @@ public class ToDoListTest {
         assertEquals(result, -1);
     }
 
+    /**
+     * Test if getToDoCount() method returns the correct number of tasks that are not completed.
+     */
     @Test
     void getCorrectToDoCount() {
         ToDoList todo = new ToDoList();
@@ -127,9 +143,11 @@ public class ToDoListTest {
 
         int result = todo.getToDoCount();
         assertEquals(result, 4);
-
     }
 
+    /**
+     * Test if getDoneCount() method returns the correct number of tasks that are completed.
+     */
     @Test
     void getCorrectDoneCount() {
         ToDoList todo = new ToDoList();
@@ -150,7 +168,6 @@ public class ToDoListTest {
 
         int result = todo.getDoneCount();
         assertEquals(result, 2);
-
     }
 
 }
