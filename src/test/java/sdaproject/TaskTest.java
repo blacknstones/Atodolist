@@ -1,129 +1,93 @@
+package sdaproject;
+
+import org.junit.jupiter.api.*;
 import java.time.DateTimeException;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.time.format.DateTimeParseException;
-import java.util.Scanner;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
+/**
+ * Test class for Task.
+ *
+ * @author Yanwei Zhu
+ * @Version 2020-10-16
+ */
 
 public class TaskTest {
-    private String title;
-    private LocalDate dueDate;
-    private boolean isComplete;
-    private String project;
 
-    public TaskTest(String title, String dateString, String project)
-    {
-        this.setTitle(title);
-        this.setDueDate(dateString);
-        this.setProject(project);
-        isComplete = false;
+    /**
+     * Test if getTitle() method returns correct title.
+     */
+    @Test
+    void getTitleTest() {
+        Task task = new Task("test1", "project1", "2020-11-01");
+        String result = task.getTitle();
+        assertEquals(result, "test1");
     }
 
-    public void setTitle(String title)
-    {
-        //check if title input is empty
-        if(title.trim().isEmpty()) {
-            throw new IllegalArgumentException("You have to enter a title!");
+    /**
+     * Test if setTitle() method sets the title correctly.
+     */
+    @Test
+    void setTitleTest() {
+        Task task = new Task("test1", "project1", "2020-11-01");
+        task.setTitle("test2");
+        String result = task.getTitle();
+        assertEquals(result, "test2");
+    }
+
+    /**
+     * Test if getProject() method returns correct project name.
+     */
+    @Test
+    void getProjectTest() {
+        Task task = new Task("test1", "project1", "2020-11-01");
+        String result = task.getProject();
+        assertEquals(result, "project1");
+    }
+
+    /**
+     * Test if setProject() method sets the project name correctly.
+     */
+    @Test
+    void setProjectTest() {
+        Task task = new Task("test1", "project1", "2020-11-01");
+        task.setProject("project2");
+        String result = task.getProject();
+        assertEquals(result, "project2");
+    }
+
+    /**
+     * Test if an exception is thrown when setting empty title to a task.
+     */
+    @Test
+    void setEmptyTitle() {
+        Task task = new Task("test1", "project1", "2020-11-01");
+        boolean findError = false;
+        try {
+            task.setTitle("");
+            fail("Expected an IllegalArgumentException to be thrown");
+        } catch (IllegalArgumentException e) {
+            findError = true;
         }
-        this.title = title.trim();
+
+        assertEquals(true, findError);
     }
 
-    public String getTitle()
-    {
-        return title;
-    }
-
-
-    public void setDueDate(String dateString)
-    {
-        //check there is date input
-        if(dateString.trim().isEmpty()) {
-            throw new IllegalStateException("You have to enter a date!");
+    /**
+     * Test if an exception is thrown when setting a passed date to a task.
+     */
+    @Test
+    void setPassedDate() {
+        Task task = new Task("test1", "project1", "2020-11-01");
+        boolean findError = false;
+        try {
+            // Today is 2020-10-25
+            task.setDueDate("2020-10-24");
+            fail("Expected an DateTimeException to be thrown");
+        } catch (DateTimeException e) {
+            findError = true;
         }
-
-        //check date string format
-        try{
-            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-            LocalDate parsedDate = LocalDate.parse(dateString, formatter);
-            this.dueDate = parsedDate;
-
-        }
-        catch (DateTimeParseException e)
-        {
-            System.out.println("The format of the date is invalid, please try again");
-        }
-
-        // check if date has passed
-        if(dueDate.compareTo(LocalDate.now()) < 0){
-            throw new DateTimeException("The time you entered has passed!");
-        }
-
-    }
-
-
-    public LocalDate getDueDate()
-    {
-        return dueDate;
-    }
-
-    public void setProject(String project)
-    {
-        //check if title is legal
-        if(project.trim().isEmpty()) {
-            throw new IllegalStateException("You have to enter a project name!");
-        }
-        this.project = project.trim();
-    }
-
-    public String getProject()
-    {
-        return project;
-    }
-
-
-    public void markAsDone()
-    {
-        if (!isComplete)
-            isComplete = true;
-        // *** reconsider this printing method. is it necessary?
-        else System.out.println("The task is already done!");
-    }
-
-    public void markAsUndone()
-    {
-            isComplete = false;
-    }
-
-    public boolean getStatus()
-    {
-        return this.isComplete;
-    }
-
-    public String getStatusString()
-    {
-        if(isComplete)
-            return "Done";
-        else return "ToDo";
-    }
-
-    public void printDescription()
-    {
-        System.out.println("Title: " + getTitle());
-        System.out.println("Due Date: " + getDueDate());
-        System.out.println("Project: " + getProject());
-        System.out.println("Status: " + getStatusString());
-    }
-
-    public TaskTest createNewTask()
-    {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter title: ");
-        String title = scan.nextLine();
-        System.out.println("Enter project: ");
-        String project = scan.nextLine();
-        System.out.println("Enter due date (format: yyyy-mm-dd): ");
-        String date = scan.nextLine();
-        TaskTest newTask = new TaskTest(title,date,project);
-        return newTask;
+        assertEquals(true, findError);
     }
 
 
